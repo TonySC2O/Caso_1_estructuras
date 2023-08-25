@@ -1,5 +1,4 @@
 
-
 // Sube el titular de relevancia n puestos.
 void Subir_relevancia(int puestos, char titular)
 {
@@ -27,6 +26,11 @@ void Mostrar_especifico()
 }
 // Muestra en orden todos los titulares de más relevante a menos relevante.
 void Mostrar_relevantes()
+{
+
+}
+// Muestra los primeros cinco titulares con más relevancia.
+void Mostrar_inicio()
 {
 
 }
