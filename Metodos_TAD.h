@@ -1,0 +1,6 @@
+
+void Mostrar_inicio()
+{
+
+}
+
