@@ -33,10 +33,11 @@ void buscar(string pPalabra){
     }
 
     string title;
+    int length = noticias->getSize();
 
     // Si solo es una palabra.
     if(pPalabra.find(",") == string::npos){
-        for(int i=0; i<noticias->getSize(); i++){
+        for(int i=0; i<length; i++){
 
             title = noticias->find(i)->getTitle();
 
@@ -54,7 +55,7 @@ void buscar(string pPalabra){
             cout << "------------------------------------" << endl;
             cout << "Noticias de '" + palabra + "':" << endl;
 
-            for(int i=0; i<noticias->getSize(); i++){
+            for(int i=0; i<length; i++){
                 
                 title = noticias->find(i)->getTitle();
                 
@@ -75,13 +76,13 @@ void eliminar(string pPalabra){
     }
 
     string title;
-
+    int length = noticias->getSize();
     // Si solo es una palabra.
     if(pPalabra.find(",") == string::npos){
-        for(int i=0; i<noticias->getSize(); i++){
+        for(int i=0; i<length; i++){
 
             title = noticias->find(i)->getTitle();
-
+            
             if(title.find(pPalabra) != string::npos){
                 noticias->remove(i);
                 cout << "Se ha eliminado " + title << endl;
@@ -97,10 +98,11 @@ void eliminar(string pPalabra){
             cout << "------------------------------------" << endl;
             cout << "Noticias de '" + palabra + "':" << endl;
 
-            for(int i=0; i<noticias->getSize(); i++){
+            for(int i=0; i<length; i++){
                 
                 title = noticias->find(i)->getTitle();
                 
+                cout << title + " " << (title.find(palabra) != string::npos) << endl;
                 if(title.find(palabra) != string::npos){
                 noticias->remove(i);
                 cout << "Se ha eliminado " + title << endl;
