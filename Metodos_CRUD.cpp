@@ -20,17 +20,12 @@ void Eliminar_noticia()
 
 }
 // Muestra titulares especificos en base a palabras y fecha escrita por el usuario.
-void Mostrar_especifico()
+void buscar()
 {
 
 }
 // Muestra en orden todos los titulares de más relevante a menos relevante.
-void Mostrar_relevantes()
-{
-
-}
-// Muestra los primeros cinco titulares con más relevancia.
-void Mostrar_inicio()
+void Mostrar_titulares()
 {
 
 }
