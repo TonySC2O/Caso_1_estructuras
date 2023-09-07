@@ -130,18 +130,56 @@ void addAPINews(vector<News *> allrecords){
 
 }
 
+void cambiarRelevancia(int pPosicion, string pCambio){
+
+    char operacion = pCambio[0];
+    int posicionFinal = stoi(pCambio.substr(1,pCambio.length()));
+
+    string title = noticias->find(pPosicion)->getTitle();
+    string author = noticias->find(pPosicion)->getAuthor();
+    string desc = noticias->find(pPosicion)->getDescription();
+
+    noticias->remove(pPosicion);
+
+    if(operacion=='+'){
+        if(posicionFinal+pPosicion >= noticias->getSize()){
+            noticias->insert(noticias->getSize(),createNews(author, title, desc));
+        }else{
+            noticias->insert(posicionFinal+pPosicion, createNews(author, title, desc));
+        }
+    }else if(operacion=='-'){
+        if(pPosicion-posicionFinal < 0){
+            noticias->insert(0,createNews(author, title, desc));
+        }else{
+            noticias->insert(pPosicion-posicionFinal, createNews(author, title, desc));
+        }
+    }
+}
+
 int main()
 {
-    Newsapi newsapi;
+    //Newsapi newsapi;
 
-    vector<News *> allrecords = newsapi.getRecords();
-    addAPINews(allrecords);
+    //vector<News *> allrecords = newsapi.getRecords();
+    //addAPINews(allrecords);
 
     // Agregar.
+    noticias->add(createNews("Autor", "Libreria", "2"));
+    noticias->add(createNews("Autor","Estanteria", "2"));
+    noticias->add(createNews("Autor","Gabinete", "2"));
+    noticias->add(createNews("Autor","Mesa", "2"));
+    noticias->add(createNews("Autor","Silla", "2"));
+    noticias->add(createNews("Autor","Estanteria para libros", "2"));
+    noticias->add(createNews("Autor","Inteleón", "2"));
     
-    // Mostrar.
     cout << "------------------------------------" << endl;
-    mostrarTitulares(false);
+    mostrarTitulares(true);
+
+    cambiarRelevancia(3, "-1");
+    cout << "------------------------------------" << endl;
+    mostrarTitulares(true);
+    return 0;
+    // Mostrar.
 
     //Buscar. (por favor colocar las palabras pegadas tras la coma)
     cout << "------------------------------------" << endl;
