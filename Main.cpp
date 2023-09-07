@@ -132,6 +132,7 @@ void addAPINews(vector<News *> allrecords){
 
 void cambiarRelevancia(int pPosicion, string pCambio){
 
+    pPosicion--;
     char operacion = pCambio[0];
     int posicionFinal = stoi(pCambio.substr(1,pCambio.length()));
 
@@ -141,13 +142,13 @@ void cambiarRelevancia(int pPosicion, string pCambio){
 
     noticias->remove(pPosicion);
 
-    if(operacion=='+'){
+    if(operacion=='-'){
         if(posicionFinal+pPosicion >= noticias->getSize()){
             noticias->insert(noticias->getSize(),createNews(author, title, desc));
         }else{
             noticias->insert(posicionFinal+pPosicion, createNews(author, title, desc));
         }
-    }else if(operacion=='-'){
+    }else if(operacion=='+'){
         if(pPosicion-posicionFinal < 0){
             noticias->insert(0,createNews(author, title, desc));
         }else{
@@ -158,28 +159,21 @@ void cambiarRelevancia(int pPosicion, string pCambio){
 
 int main()
 {
-    //Newsapi newsapi;
-
-    //vector<News *> allrecords = newsapi.getRecords();
-    //addAPINews(allrecords);
 
     // Agregar.
-    noticias->add(createNews("Autor", "Libreria", "2"));
-    noticias->add(createNews("Autor","Estanteria", "2"));
-    noticias->add(createNews("Autor","Gabinete", "2"));
-    noticias->add(createNews("Autor","Mesa", "2"));
-    noticias->add(createNews("Autor","Silla", "2"));
-    noticias->add(createNews("Autor","Estanteria para libros", "2"));
-    noticias->add(createNews("Autor","Inteleón", "2"));
+    
+    Newsapi newsapi;
+
+    vector<News *> allrecords = newsapi.getRecords();
+    addAPINews(allrecords);
+
+    // Mostrar.
+    
+    cout << "------------------------------------" << endl;
+    mostrarTitulares(false);
     
     cout << "------------------------------------" << endl;
     mostrarTitulares(true);
-
-    cambiarRelevancia(3, "-1");
-    cout << "------------------------------------" << endl;
-    mostrarTitulares(true);
-    return 0;
-    // Mostrar.
 
     //Buscar. (por favor colocar las palabras pegadas tras la coma)
     cout << "------------------------------------" << endl;
@@ -189,6 +183,15 @@ int main()
     cout << "------------------------------------" << endl;
     eliminar("X");
 
+    cout << "------------------------------------" << endl;
+    mostrarTitulares(true);
+    
+    //Cambiar relevancia:
+    
+    cout << "------------------------------------" << endl;
+    mostrarTitulares(true);
+
+    cambiarRelevancia(3, "+10");
     cout << "------------------------------------" << endl;
     mostrarTitulares(true);
 
