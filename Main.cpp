@@ -9,9 +9,9 @@ using namespace std;
 // Lista de noticias.
 List<News>* noticias = new List<News>();
 
-News* createNews(string pTitle, string pLocation, string pOrganizer)
+News* createNews(string pAuthor, string pTitle, string pDescription)
 {
-    return new News(pTitle, pLocation, pOrganizer);
+    return new News(pAuthor, pTitle, pDescription);
 }
 
 void mostrarTitulares(bool pMostrarTodos)
@@ -125,7 +125,7 @@ void addAPINews(vector<News *> allrecords){
         title = allrecords.at(i)->getTitle();
         desc = allrecords.at(i)->getDescription();
         author = allrecords.at(i)->getAuthor();
-        noticias->add(createNews(title, desc, author));
+        noticias->add(createNews(author, title, desc));
     }
 
 }
